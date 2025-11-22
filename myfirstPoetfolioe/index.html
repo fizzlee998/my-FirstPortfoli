@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oyewola Abdulafeez | Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+    body {
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
+    }
+
+    body.dark { background: #121212; color: #eee; }
+
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 50px; background: #fff;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    body.dark header { background: #1e1e1e; }
+
+    header h2 { color: #0077cc; }
+
+    header nav a {
+      margin: 0 15px; text-decoration: none;
+      color: #444; font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    body.dark header nav a { color: #eee; }
+
+    .btn {
+      padding: 8px 16px; background: #0077cc;
+      color: white; border-radius: 8px; text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover { background: #005fa3; }
+
+    .btn-outline {
+      display: inline-block; margin-top: 10px;
+      padding: 8px 14px; border: 2px solid #0077cc;
+      border-radius: 8px; color: #0077cc;
+      text-decoration: none; transition: all 0.3s;
+    }
+
+    .btn-outline:hover { background: #0077cc; color: white; }
+
+    section {
+      padding: 60px 50px; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-wrapper {
+      display: flex; align-items: flex-start; gap: 40px; flex-wrap: wrap;
+    }
+
+    .profile-box {
+      flex: 1; max-width: 280px; text-align: center;
+    }
+
+    .profile-box img {
+      width: 100%; border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .profile-box h2 { margin-top: 15px; font-size: 22px; }
+    .profile-box .role { color: #555; font-style: italic; }
+    body.dark .profile-box .role { color: #bbb; }
+
+    .about-text { flex: 2; }
+
+    .about-text h1 { font-size: 2rem; margin-bottom: 15px; }
+
+    #typewriter {
+      color: #0077cc; font-weight: bold;
+      border-right: 2px solid #0077cc;
+      padding-right: 4px; white-space: nowrap; overflow: hidden;
+    }
+
+    .skills { margin-top: 20px; }
+    .skill { margin-bottom: 12px; }
+    .skill-name { margin-bottom: 4px; font-weight: bold; }
+    .skill-bar { background: #eee; border-radius: 5px; overflow: hidden; }
+    .skill-fill {
+      background: #0077cc; height: 8px;
+      border-radius: 5px; transition: width 1s;
+    }
+
+    /* ===== STATISTICS SECTION ===== */
+    .stats-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .stats-section h2 {
+      font-size: 1.8rem;
+      color: #0077cc;
+      margin-bottom: 30px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      background: #f4faff;
+      border: 2px solid #0077cc;
+      border-radius: 15px;
+      padding: 25px 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      color: #0077cc;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .stat-card p {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    body.dark .stat-card {
+      background: #1e1e1e;
+      color: #eee;
+      border-color: #0077cc;
+      box-shadow: 0 3px 10px rgba(0, 123, 255, 0.1);
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects h2 { margin-bottom: 20px; color: #0077cc; text-align: center; }
+
+    .project-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      background: #fff; padding: 20px; border-radius: 10px;
+      text-align: center; box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .project-card:hover { transform: translateY(-5px); }
+    body.dark .project-card { background: #1e1e1e; }
+
+    .project-card img {
+      width: 100%; height: 160px; object-fit: cover;
+      border-radius: 8px; margin-bottom: 15px;
+    }
+
+    /* ===== CONTACT SECTION (ENHANCED) ===== */
+    .contact {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5faff, #e9f4ff);
+    }
+
+    body.dark .contact {
+      background: linear-gradient(135deg, #0e0e0e, #1b1b1b);
+    }
+
+    .contact h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      justify-content: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .contact-info {
+      flex: 1;
+      max-width: 600px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 15px;
+      border: 1px solid #0077cc;
+      box-shadow: 0 8px 20px rgba(0, 119, 204, 0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    body.dark .contact-info {
+      background: rgba(30, 30, 30, 0.9);
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.1);
+    }
+
+    .contact-decor .circle,
+    .contact-decor .triangle,
+    .contact-decor .square {
+      position: absolute;
+      opacity: 0.12;
+    }
+
+    .contact-decor .circle {
+      width: 180px; height: 180px;
+      background: #0077cc;
+      border-radius: 50%;
+      top: 10%; left: 5%;
+    }
+
+    .contact-decor .triangle {
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 160px solid #00c3ff;
+      bottom: 8%; right: 10%;
+      transform: rotate(15deg);
+    }
+
+    .contact-decor .square {
+      width: 120px;
+      height: 120px;
+      background: #005fa3;
+      bottom: 25%;
+      left: 15%;
+      transform: rotate(25deg);
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 8px 18px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #0077cc;
+      text-decoration: none;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      color: #005fa3;
+    }
+
+    footer {
+      text-align: center; padding: 20px;
+      background: #f4faff; border-top: 1px solid #0077cc;
+    }
+    body.dark footer { background: #1e1e1e; border-color: #0077cc; }
+
+    #theme-toggle {
+      cursor: pointer; padding: 6px 12px; border: none; border-radius: 6px;
+      background: #ddd; margin-left: 20px;
+    }
+    body.dark #theme-toggle { background: #444; color: #eee; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>My Portfolio</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div>
+      <a href="#projects" class="btn">View Projects</a>
+      <button id="theme-toggle">🌙</button>
+    </div>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-wrapper">
+      <div class="profile-box">
+        <img src="Screenshot_20250628-141641_1.jpg" alt="Profile Photo">
+        <h2>Oyewola Abdulafeez</h2>
+        <p class="role">Data Analyst | Problem Solver</p>
+      </div>
+
+      <div class="about-text">
+        <h1>
+          Hi, I’m <b>Oyewola Abdulafeez</b> — 
+          <span id="typewriter"></span>
+        </h1>
+        <p>
+          I am a passionate Data Analyst with a strong background in turning raw numbers into powerful insights that drive business growth. 
+          Over the years, I’ve worked on projects ranging from churn prediction dashboards to survey analysis for NGOs and organizations. 
+          My expertise covers <b>data cleaning, visualization, SQL queries, and dashboard creation</b> using Excel, Power BI, and Python.
+        </p>
+        <p>
+          Beyond technical skills, I bring a curious and problem-solving mindset that helps uncover hidden patterns in data. 
+          I enjoy collaborating with teams, presenting findings in simple terms, and providing practical solutions for decision-making.  
+          My goal is not just to analyze data, but to tell a story with it — one that businesses and organizations can act on.  
+        </p>
+        <p>
+          Outside work, I’m constantly learning new tools and techniques in the field of analytics. 
+          I also love contributing to projects that align with the <b>UN Sustainable Development Goals (SDGs)</b>, 
+          as I believe data can be a powerful force for positive change in society.  
+        </p>
+
+        <div class="skills">
+          <div class="skill">
+            <div class="skill-name">Excel & Power BI</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name">SQL</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-name">Python</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+          </div>
+        </div>
+
+        <a href="Oyewola Abdulafeez Resume (1).pdf" class="btn-outline" target="_blank">📄 View My Resume</a>
+      </div>
+    </div>
+
+    <!-- STATISTICS SECTION -->
+    <div class="stats-section">
+      <h2>By the Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>10+</h3>
+          <p>Interactive dashboards built using Power BI & Excel</p>
+        </div>
+        <div class="stat-card">
+          <h3>5k+</h3>
+          <p>Rows of data analyzed across multiple business domains</p>
+        </div>
+        <div class="stat-card">
+          <h3>8</h3>
+          <p>DAX measures and KPIs created for performance tracking</p>
+        </div>
+        <div class="stat-card">
+          <h3>4+</h3>
+          <p>Visualized sales trends across 4 regions with profit insights</p>
+        </div>
+        <div class="stat-card">
+          <h3>∞</h3>
+          <p>Transformed raw data into actionable insights for decision-making</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="Dashboard 1.jpg" alt="Churn Dashboard">
+        <h3>Sales-Profit-Dashboard</h3>
+        <p>Interactive Excel dashboard analysing company sales and profit trends from 2021–2024.</p>
+        <a href="https://github.com/fizzlee998/sales-profit-dashboard" class="btn-outline">Open Project</a>
+      </div>
+      <div class="project-card">
+        <img src="Dashboard 2.png" alt="Nutrition Dashboard">
+        <h3>Sales-Performance-Dashboard</h3>
+        <p>Interactive Power BI dashboard providing key insights into sales performance, profit trends, customer behavior, and regional distribution.</p>
+        <a href="https://github.com/fizzlee998/Sales-Performance-Dashboard" class="btn-outline">Open Project</a>
+      </div>
+      <div class="project-card">
+        <img src="Crime Scene.jpg" alt="Crime Scene">
+        <h3>SQL-Crime-Scene-Investigation-Project</h3>
+        <p>SQL-based crime scene investigation using Filtyville dataset. Queries reveal suspects, witness clues, and transaction evidence to identify the thief using logical filtering and joins.</p>
+        <a href="https://github.com/fizzlee998/SQL-Crime-Scene-Investigation-Project" class="btn-outline">Open Project</a>
+      </div>
+      <div class="project-card">
+        <img src="HRs.png" alt="HRs">
+        <h3>Hotel Reservation System</h3>
+        <p>A .NET application for managing hotel bookings and payments.</p>
+        <a href="https://github.com/fizzlee998/HR-Dashboard" class="btn-outline">Open Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION (UPDATED) -->
+  <section id="contact" class="contact">
+    <h2>Get in Touch</h2>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <p><b>Email:</b> fizzlee201@gmail.com</p>
+        <p><b>Location:</b> Lagos, Nigeria</p>
+        <p><b>Phone:</b> +234 701 907 5434</p>
+        <p>I’m always open to collaborations, freelance projects, and job opportunities. Let’s create something impactful together!</p>
+
+        <div class="social-links">
+          <a href="https://github.com/fizzlee998" target="_blank">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/oyewola-abdulafeez-19782a2b6" target="_blank">💼 LinkedIn</a>
+          <a href="https://x.com/Abdulafeez1999" target="_blank">🐦 X (Twitter)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative background shapes -->
+    <div class="contact-decor">
+      <div class="circle"></div>
+      <div class="triangle"></div>
+      <div class="square"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Oyewola Abdulafeez. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // DARK MODE TOGGLE
+    const toggleBtn = document.getElementById("theme-toggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    });
+
+    // TYPEWRITER EFFECT
+    const phrases = [
+      "I give meaningful insights from real-world data.",
+      "I build dashboards and analytics for better decisions.",
+      "I turn data into powerful stories.",
+      "I make sense of complex numbers."
+    ];
+    let currentPhraseIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const speed = 100;
+    const eraseSpeed = 50;
+    const delayBetweenPhrases = 1500;
+    const typewriterElement = document.getElementById("typewriter");
+
+    function typeWriterEffect() {
+      const currentPhrase = phrases[currentPhraseIndex];
+      if (isDeleting) {
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex--);
+      } else {
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex++);
+      }
+
+      if (!isDeleting && currentCharIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(typeWriterEffect, delayBetweenPhrases);
+      } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        setTimeout(typeWriterEffect, speed);
+      } else {
+        setTimeout(typeWriterEffect, isDeleting ? eraseSpeed : speed);
+      }
+    }
+
+    typeWriterEffect();
+  </script>
+</body>
+</html>
